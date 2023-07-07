@@ -14,16 +14,19 @@ void setup() {
         int y = 130 + m*200;
         int sizeX = 130;
         int sizeY = 130;
-        int spread = int(random(4,10)); //subtle size  =5
-        d[n][m] = new Dot(x, y, sizeX, sizeY, spread);  
-      }
+        int spreadX = int(random(4,16)); //subtle size  =5
+        int spreadY = 0;//int(random(0,10)); //subtle size  =5
+
+        d[n][m] = new Dot(x, y, sizeX, sizeY, spreadX, spreadY);  
+
+    }
   }
   
 }
 void draw() {    
   noStroke();
   
-  background(0);
+  background(10);
   for(int n=0; n<numDotsX; n++){
       for(int m=0; m<numDotsY; m++){
         d[n][m].display();
@@ -45,5 +48,5 @@ void draw() {
 
 void mousePressed(){
     saveFrame(); 
-
+    save("today.png");
 }
