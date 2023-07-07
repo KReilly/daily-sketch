@@ -1,18 +1,22 @@
-int numDots = 5;
-Dot[] d;
+int numDotsX = 5;
+int numDotsY = 5;
+Dot[][] d;
 
 void setup() {
   size(1080, 1080, P2D);
   
-  d = new Dot[numDots];
+  d = new Dot[numDotsX][numDotsY];
   
-  for(int n=0; n<numDots; n++){
-    int x = 125;
-    int y = 130 + n*200;
-    int sizeX = 130;
-    int sizeY = 130;
-    int spread = int(random(2,10)); //subtle size  =5
-    d[n] = new Dot(x, y, sizeX, sizeY, spread);  
+  for(int n=0; n<numDotsX; n++){
+      for(int m=0; m<numDotsY; m++){
+          
+        int x = 125 + n*200;
+        int y = 130 + m*200;
+        int sizeX = 130;
+        int sizeY = 130;
+        int spread = int(random(4,10)); //subtle size  =5
+        d[n][m] = new Dot(x, y, sizeX, sizeY, spread);  
+      }
   }
   
 }
@@ -20,8 +24,10 @@ void draw() {
   noStroke();
   
   background(0);
-  for(int n = 0; n<numDots; n++){
-    d[n].display();
+  for(int n=0; n<numDotsX; n++){
+      for(int m=0; m<numDotsY; m++){
+        d[n][m].display();
+      }
   }
   
   //I like this
@@ -36,3 +42,8 @@ void draw() {
   
 
 }  
+
+void mousePressed(){
+    saveFrame(); 
+
+}
