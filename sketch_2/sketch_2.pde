@@ -1,52 +1,33 @@
-int numDotsX = 5;
-int numDotsY = 5;
-Dot[][] d;
+
+float max_distance;
 
 void setup() {
-  size(1080, 1080, P2D);
-  
-  d = new Dot[numDotsX][numDotsY];
-  
-  for(int n=0; n<numDotsX; n++){
-      for(int m=0; m<numDotsY; m++){
-          
-        int x = 125 + n*200;
-        int y = 130 + m*200;
-        int sizeX = 130;
-        int sizeY = 130;
-        int spreadX = int(random(4,16)); //subtle size  =5
-        int spreadY = 0;//int(random(0,10)); //subtle size  =5
+  size(1080, 1080); 
+  stroke(10);
+ 
+  max_distance = dist(0, 0, width, height);
+}
 
-        d[n][m] = new Dot(x, y, sizeX, sizeY, spreadX, spreadY);  
+void draw() {
+  background(255);
 
+  for(int i = 0; i <= width; i += 20) {
+    for(int j = 0; j <= height; j += 20) {
+      float size = dist(mouseX, mouseY, i, j);
+      size = size/max_distance * 50;
+      //ellipse(i, j, size, size);
+      square(i, j, size);
     }
   }
-  
 }
-void draw() {    
-  noStroke();
-  
-  background(10);
-  for(int n=0; n<numDotsX; n++){
-      for(int m=0; m<numDotsY; m++){
-        d[n][m].display();
-      }
-  }
-  
-  //I like this
-  //blendMode(ADD);
-  //fill(color(255,0,0));
-  //ellipse(135,130,130,130);
-  //fill(color(0,255,0));
-  //ellipse(130,130,130,130);
-  //fill(color(0,0,255));
-  //ellipse(125,130,130,130);
 
-  
-
-}  
 
 void mousePressed(){
+    saveFrame(); 
+    save("today.png");
+}
+
+void keyPressed(){
     saveFrame(); 
     save("today.png");
 }
